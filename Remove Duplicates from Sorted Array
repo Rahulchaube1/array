@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        // If array is empty or has one element
+        if(nums.size() <= 1) return nums.size();
+        
+        // k points to position where next unique element should go
+        int k = 1;
+        
+        // Start from second element
+        for(int i = 1; i < nums.size(); i++) {
+            // If current element is different from previous
+            if(nums[i] != nums[i-1]) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        
+        return k;  // Number of unique elements
+    }
+};
