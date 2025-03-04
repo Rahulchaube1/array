@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        unordered_set<int> seen;  // Hash set to store seen numbers
+        
+        for(int num : arr) {
+            // Check if double or half exists
+            if(seen.count(num * 2) || 
+               (num % 2 == 0 && seen.count(num / 2))) {
+                return true;
+            }
+            seen.insert(num);  // Add current number to set
+        }
+        
+        return false;
+    }
+};
