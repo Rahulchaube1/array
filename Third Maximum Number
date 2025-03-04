@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        long firstMax = LONG_MIN;  // Largest
+        long secondMax = LONG_MIN; // Second largest
+        long thirdMax = LONG_MIN;  // Third largest
+        
+        // Single pass through array
+        for(int num : nums) {
+            // Skip if num equals any existing max (ensures distinct)
+            if(num == firstMax || num == secondMax || num == thirdMax) {
+                continue;
+            }
+            
+            // Update maximums
+            if(num > firstMax) {
+                thirdMax = secondMax;
+                secondMax = firstMax;
+                firstMax = num;
+            }
+            else if(num > secondMax) {
+                thirdMax = secondMax;
+                secondMax = num;
+            }
+            else if(num > thirdMax) {
+                thirdMax = num;
+            }
+        }
+        
+        // If no third max exists, return first max
+        return (thirdMax == LONG_MIN) ? firstMax : thirdMax;
+    }
+};
