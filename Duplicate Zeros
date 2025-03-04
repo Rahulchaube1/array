@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+        // First, count the number of zeros to determine the new effective length
+        int zeros = 0;
+        int n = arr.size();
+        
+        // Count zeros
+        for(int i = 0; i < n; i++) {
+            if(arr[i] == 0) zeros++;
+        }
+        
+        // Start from the end and shift elements
+        for(int i = n-1; i >= 0; i--) {
+            if(arr[i] == 0) {
+                zeros--;  // Reduce zero count as we process each zero
+                // Check if we can fit both the current zero and its duplicate
+                if(i + zeros + 1 < n) {
+                    arr[i + zeros + 1] = 0;
+                }
+                if(i + zeros < n) {
+                    arr[i + zeros] = 0;
+                }
+            }
+            // For non-zero elements
+            else if(i + zeros < n) {
+                arr[i + zeros] = arr[i];
+            }
+        }
+    }
+};
