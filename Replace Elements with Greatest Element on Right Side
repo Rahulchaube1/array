@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+        int maxRight = -1;  // Initialize max for rightmost element
+        
+        // Traverse array from right to left
+        for(int i = arr.size() - 1; i >= 0; i--) {
+            int current = arr[i];       // Store current element
+            arr[i] = maxRight;          // Replace with max seen so far
+            maxRight = max(maxRight, current);  // Update max
+        }
+        
+        return arr;
+    }
+};
