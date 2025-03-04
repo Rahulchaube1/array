@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& nums) {
+        int left = 0;           // Points to next position for even number
+        int right = nums.size() - 1;  // Points to next position for odd number
+        
+        while(left < right) {
+            // If left points to odd and right points to even, swap them
+            if(nums[left] % 2 == 1 && nums[right] % 2 == 0) {
+                swap(nums[left], nums[right]);
+                left++;
+                right--;
+            }
+            // If left points to even, move forward
+            else if(nums[left] % 2 == 0) {
+                left++;
+            }
+            // If right points to odd, move backward
+            else if(nums[right] % 2 == 1) {
+                right--;
+            }
+        }
+        
+        return nums;
+    }
+};
